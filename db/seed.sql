@@ -7,6 +7,8 @@ DROP TABLE IF EXISTS groupers_users;
 CREATE TABLE groupers_users
 (
   user_id SERIAL PRIMARY KEY,
+  firstName VARCHAR(25) NOT NULL,
+  lastName VARCHAR(25) NOT NULL,
   email VARCHAR(20) UNIQUE NOT NULL,
   password TEXT UNIQUE NOT NULL,
   profile_pic TEXT
