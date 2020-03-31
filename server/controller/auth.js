@@ -1,14 +1,14 @@
 const bcrypt = require('bcryptjs');
 
 async function register(req, res) {
-  const { email, password } = req.body;
+  const { fullName, profile_pic, email, password } = req.body;
   const db = req.app.get('db');
 
   const foundUser = await db.user.get_user(email).catch(err => console.error(err));
-  if (foundUser.length !== 0) return res.status(406).json('email Taken');
+  if (foundUser.length !== 0) return res.status(406).json('Email Taken');
 
   const hash = bcrypt.hashSync(password, 12);
-  const registeredUser = await db.user.register(email, hash);
+  const registeredUser = await db.user.register(fullName, profile_pic, email, hash);
 
   const user = registeredUser[0];
   req.session.user = { email: user.email, user_id: user.user_id };
