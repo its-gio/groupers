@@ -8,7 +8,7 @@ CREATE TABLE groupers_users
 (
   user_id SERIAL PRIMARY KEY,
   fullname VARCHAR(50) NOT NULL,
-  email TEXT UNIQUE NOT NULL,
+  email TEXT UNIQUE NOT NULL UNIQUE,
   password TEXT UNIQUE NOT NULL,
   profile_pic TEXT
 );
@@ -17,10 +17,10 @@ CREATE TABLE groupers_project
 (
   project_id SERIAL PRIMARY KEY,
   creator INTEGER REFERENCES groupers_users(user_id),
-  title VARCHAR(45),
-  description TEXT,
-  funded BOOLEAN,
-  difficulty VARCHAR(15),
+  title VARCHAR(45) NOT NULL,
+  description TEXT NOT NULL,
+  difficulty VARCHAR(15) NOT NULL,
+  funded BOOLEAN NOT NULL,
   start_time TIMESTAMP,
   end_time TIMESTAMP
 );
