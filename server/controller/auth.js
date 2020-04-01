@@ -25,7 +25,7 @@ async function login(req, res) {
   const user = foundUser[0];
   const isAuth = await bcrypt.compare(password, user.password);
   if (isAuth) {
-    req.session.user = { email: user.email, user_id: user.user_id };
+    req.session.user = { fullname: user.fullname, profile_pic: user.profile_pic, email: user.email, user_id: user.user_id };
     return res.status(202).json(req.session.user);
   }
 
