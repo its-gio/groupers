@@ -1,11 +1,15 @@
 import React from 'react';
+import routes from './routes';
 import './App.scss';
+import { HashRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      Working!
-    </div>
+    <HashRouter>
+      <div>
+        { routes }
+      </div>
+    </HashRouter>
   );
 }
 
