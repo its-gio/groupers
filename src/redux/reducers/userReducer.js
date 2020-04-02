@@ -44,7 +44,6 @@ export default function reducer(state = initialState, action) {
         loading: true
       }
     case `${POST_LOGIN}_FULFILLED`:
-      console.log("Logged in!")
       return {
         ...state,
         user_id: payload.data.user_id,

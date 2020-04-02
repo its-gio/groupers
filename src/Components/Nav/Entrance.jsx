@@ -19,7 +19,7 @@ function Entrance(props) {
     e.preventDefault();
 
     if (form === "login") {
-      return props.postLogin(register);
+      return props.postLogin(login);
     } else {
       return props.postRegister(register);
     }

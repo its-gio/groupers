@@ -1,5 +1,6 @@
 import React from 'react';
 import Entrance from './Entrance';
+import { connect } from 'react-redux';
 
 function Nav() {
   return (
@@ -10,4 +11,6 @@ function Nav() {
   )
 }
 
-export default Nav
+const mapStateToProps = (reduxState) => (reduxState)
+
+export default connect(mapStateToProps, {})(Nav)
