@@ -53,4 +53,15 @@ nav {
       }
     }
   }
+
+  .profile {
+
+    .img-conatiner {
+      width: 25px;
+
+      &--img {
+        width: 100%;
+      }
+    }
+  }
 }
