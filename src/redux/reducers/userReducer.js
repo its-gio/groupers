@@ -6,11 +6,17 @@ const initialState = {
 
 // Actions
 const POST_REGISTER = "POST_REGISTER";
+const POST_LOGIN = "POST_LOGIN";
 
 // Export Functions
-export function postRegister() {
-  const data = axios.post('/auth/register', );
+export function postRegister(register) {
+  const data = axios.post('/auth/register', {...register});
   return { type: POST_REGISTER, payload: data };
+}
+
+export function postLogin(login) {
+  const data = axios.post('/auth/login', {...login});
+  return { type: POST_LOGIN, payload: data };
 }
 
 // Reducer
@@ -23,6 +29,22 @@ export default function reducer(state = initialState, action) {
         loading: true
       }
     case `${POST_REGISTER}_FULFILLED`:
+      return {
+        ...state,
+        user_id: payload.data.user_id,
+        fullname: payload.data.fullname,
+        profile_pic: payload.data.profile_pic,
+        email: payload.data.email,
+        loading: false
+      }
+
+    case `${POST_LOGIN}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+    case `${POST_LOGIN}_FULFILLED`:
+      console.log("Logged in!")
       return {
         ...state,
         user_id: payload.data.user_id,
