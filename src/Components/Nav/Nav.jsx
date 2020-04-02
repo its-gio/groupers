@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Entrance from './Entrance';
+import Entrance from './Entrance/Entrance';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import { getSession } from '../../redux/reducers/userReducer'
