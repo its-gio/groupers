@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
-function Entrance(props) {
+function Entrance() {
   return (
     <ul className="entrance">
       <LoginForm />

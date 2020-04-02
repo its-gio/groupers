@@ -12,7 +12,6 @@ function LoginForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     return props.postLogin(login);
   }
 
