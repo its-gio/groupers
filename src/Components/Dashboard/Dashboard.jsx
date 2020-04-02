@@ -8,8 +8,9 @@ function Dashboard(props) {
   }, []);
 
   return (
-    <div>
-      Dashboard
+    <div className="dashboard">
+      <div className="banner">
+      </div>
     </div>
   )
 }

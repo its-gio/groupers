@@ -1,0 +1,13 @@
+.dashboard {
+
+  .banner {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.45), 
+      rgba(0, 0, 0, 0.45),
+    ), url('../imgs/Banner.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 80vh;
+  }
+}
