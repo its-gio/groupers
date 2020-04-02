@@ -18,8 +18,8 @@ function Entrance() {
           <span>Register</span>
 
           <form>
-            <input type="text" name="fullname" />
-            <input type="text" name="profile_pic" />
+            <input type="text" name="fullname" placeholder="fullname" />
+            <input type="file" name="profile_pic" />
             <input type="email" name="email" placeholder="email" />
             <input type="password" name="password" placeholder="password" />
             <input type="submit"/>
