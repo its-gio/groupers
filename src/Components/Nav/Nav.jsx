@@ -16,6 +16,6 @@ function Nav(props) {
   )
 }
 
-const mapStateToProps = (reduxState) => (reduxState)
+const mapStateToProps = (reduxState) => (reduxState);
 
-export default connect(mapStateToProps, { getSession })(Nav)
+export default connect(mapStateToProps, { getSession })(Nav);
