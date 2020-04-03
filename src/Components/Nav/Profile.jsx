@@ -1,5 +1,8 @@
 import React from 'react';
 import ProfileImg from './ProfileImg';
+import { connect } from 'react-redux';
+
+import { getLogout } from '../../redux/reducers/userReducer'
 
 
 function Profile(props) {
@@ -10,10 +13,10 @@ function Profile(props) {
       </div>
 
       <ul className="profile--options">
-        <li>Logout</li>
+        <li onClick={props.getLogout}>Logout</li>
       </ul>
     </div>
   )
 }
 
-export default Profile;
+export default connect(null, { getLogout })(Profile);
