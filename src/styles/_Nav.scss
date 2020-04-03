@@ -13,7 +13,7 @@ nav {
       margin: 5px 10px;
       position: relative;
 
-      &:hover form {
+      &:hover form, form:focus-within {
         opacity: 1;
         visibility: initial;
         transform: translateY(100%);
