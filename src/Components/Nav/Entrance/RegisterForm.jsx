@@ -44,7 +44,7 @@ function RegisterForm(props) {
         <input type="file" onChange={handleImgChange} name="profile_pic" />
         <input onChange={handleChange} value={register.email} type="email" name="email" placeholder="Email" required />
         <input onChange={handleChange} value={register.password} type="password" name="password" placeholder="Password" required />
-        { props.loading ? <span className="loading-img-container"><img src={loadingGif} /></span> : <input type="submit"/> }
+        { props.loading ? <span className="loading-img-container"><img src={loadingGif} alt="Loading Gif" /></span> : <input type="submit"/> }
       </form>
     </li>
   )

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getProjects } from '../../redux/reducers/projectsReducer';
+import Projects from './Projects';
 
 function Dashboard(props) {
   useEffect(() => {
@@ -15,6 +16,8 @@ function Dashboard(props) {
           <button>Got An Idea?</button>
         </div>
       </div>
+
+      <Projects />
     </div>
   )
 }
