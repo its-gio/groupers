@@ -10,6 +10,10 @@ function Dashboard(props) {
   return (
     <div className="dashboard">
       <div className="banner">
+        <div className="banner--inner">
+          <h2>Get the brain juices going!</h2>
+          <button>Got An Idea?</button>
+        </div>
       </div>
     </div>
   )
