@@ -9,7 +9,7 @@ function Profile(props) {
   return (
     <div className="profile">
       <div className="profile--img-conatiner">
-        <ProfileImg profile_pic={props.user.profile_pic} />
+        <ProfileImg profile_pic={props.user.profile_pic} fullname={props.user.fullname} />
       </div>
 
       <ul className="profile--options">

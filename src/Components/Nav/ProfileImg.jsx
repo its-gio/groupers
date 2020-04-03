@@ -7,8 +7,8 @@ function ProfileImg(props) {
     <>
       {
         props.profile_pic ?
-        <img className="profile--img-conatiner" src={props.profile_pic} alt="Placeholder"/> :
-        <img className="profile--img-conatiner" src={imgPlaceholder} alt="Placeholder"/>
+        <img className="profile--img-conatiner" src={props.profile_pic} alt={`${props.fullname}'s beautiful mug!`}/> :
+        <img className="profile--img-conatiner" src={imgPlaceholder} alt={`${props.fullname}'s Placeholder`}/>
       }
     </>
   )
