@@ -70,6 +70,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         loading: true
       }
+    case `${GET_SESSION}_REJECTED`:
+      return {
+        ...state,
+        loading: false
+      }
     case `${GET_SESSION}_FULFILLED`:
       return {
         ...state,

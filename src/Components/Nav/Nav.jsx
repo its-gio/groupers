@@ -7,7 +7,8 @@ import { getSession } from '../../redux/reducers/userReducer'
 function Nav(props) {
   useEffect(() => {
     props.getSession();
-  }, [])
+  }, []);
+
   return (
     <nav>
       <div><h1>Groupers</h1></div>
@@ -16,6 +17,6 @@ function Nav(props) {
   )
 }
 
-const mapStateToProps = (reduxState) => (reduxState);
+const mapStateToProps = (reduxState) => ({ user: reduxState.user });
 
 export default connect(mapStateToProps, { getSession })(Nav);
