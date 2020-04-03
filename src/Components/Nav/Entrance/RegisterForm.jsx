@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import { postRegister } from '../../../redux/reducers/userReducer';
+import loadingGif from '../../../imgs/loading.gif';
 
 function RegisterForm(props) {
   const [register, setRegister] = useState({ fullname:'', email: '', password: '' });
@@ -43,7 +44,7 @@ function RegisterForm(props) {
         <input type="file" onChange={handleImgChange} name="profile_pic" />
         <input onChange={handleChange} value={register.email} type="email" name="email" placeholder="Email" required />
         <input onChange={handleChange} value={register.password} type="password" name="password" placeholder="Password" required />
-        <input type="submit"/>
+        { props.loading ? <span className="loading-img-container"><img src={loadingGif} /></span> : <input type="submit"/> }
       </form>
     </li>
   )

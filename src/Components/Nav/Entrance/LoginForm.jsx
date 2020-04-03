@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { postLogin } from '../../../redux/reducers/userReducer'
+import { postLogin } from '../../../redux/reducers/userReducer';
+import loadingGif from '../../../imgs/loading.gif';
 
 function LoginForm(props) {
   const [login, setLogin] = useState({ email: '', password: '' });
@@ -23,10 +24,12 @@ function LoginForm(props) {
       <form onSubmit={handleSubmit}>
         <input onChange={handleChange} value={login.email} type="email" name="email" placeholder="Email" required />
         <input onChange={handleChange} value={login.password} type="password" name="password" placeholder="Password" required />
-        <input type="submit"/>
+        { props.loading ? <span className="loading-img-container"><img src={loadingGif} /></span> : <input type="submit" />}
       </form>
     </li>
   )
 }
 
-export default connect(null, { postLogin })(LoginForm);
+const mapStateToProps = (reduxState) => ({ loading: reduxState.user.loading });
+
+export default connect(mapStateToProps, { postLogin })(LoginForm);

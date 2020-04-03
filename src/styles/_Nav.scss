@@ -6,6 +6,16 @@ nav {
   align-items: center;
   justify-content: space-between;
 
+  // Submit button
+  .loading-img-container {
+    height: 20px;
+    text-align: right;
+
+    img {
+      height: 100%;
+    }
+  }
+
   .entrance {
     display: flex;
 
