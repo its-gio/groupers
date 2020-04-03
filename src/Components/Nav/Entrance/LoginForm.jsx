@@ -21,8 +21,8 @@ function LoginForm(props) {
       <span>Login</span>
 
       <form onSubmit={handleSubmit}>
-        <input onChange={handleChange} value={login.email} type="email" name="email" placeholder="email" required />
-        <input onChange={handleChange} value={login.password} type="password" name="password" placeholder="password" required />
+        <input onChange={handleChange} value={login.email} type="email" name="email" placeholder="Email" required />
+        <input onChange={handleChange} value={login.password} type="password" name="password" placeholder="Password" required />
         <input type="submit"/>
       </form>
     </li>

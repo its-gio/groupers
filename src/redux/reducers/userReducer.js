@@ -9,7 +9,6 @@ const POST_REGISTER = "POST_REGISTER";
 const POST_LOGIN = "POST_LOGIN";
 const GET_LOGOUT = "GET_LOGOUT";
 const GET_SESSION = "GET_SESSION";
-const POST_PROFILE_IMG = "POST_PROFILE_IMG";
 
 // Export Functions
 export function postRegister(register) {
@@ -30,11 +29,6 @@ export function getLogout() {
 export function getSession() {
   const data = axios.get('/auth/session');
   return { type: GET_SESSION, payload: data };
-}
-
-export function postProfilePic(formData) {
-  const data = axios.post(`${process.env.REACT_APP_CLOUDINARY_URL}`, formData);
-  return { type: POST_PROFILE_IMG, payload: data };
 }
 
 // Reducer
@@ -103,18 +97,6 @@ export default function reducer(state = initialState, action) {
         fullname: payload.data.fullname,
         profile_pic: payload.data.profile_pic,
         email: payload.data.email,
-        loading: false
-      }
-
-    case `${POST_PROFILE_IMG}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      }
-    case `${POST_PROFILE_IMG}_FULFILLED`:
-      return {
-        ...state,
-        profile_pic: payload.data.profile_pic,
         loading: false
       }
 
