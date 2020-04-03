@@ -4,13 +4,13 @@ import imgPlaceholder from "../../imgs/Portrait_Placeholder.png"
 
 function ProfileImg(props) {
   return (
-    <div>
+    <>
       {
         props.profile_pic ?
-        <img className="img-conatiner--img" src={props.profile_pic} alt="Placeholder"/> :
-        <img className="img-conatiner--img" src={imgPlaceholder} alt="Placeholder"/>
+        <img className="profile--img-conatiner" src={props.profile_pic} alt="Placeholder"/> :
+        <img className="profile--img-conatiner" src={imgPlaceholder} alt="Placeholder"/>
       }
-    </div>
+    </>
   )
 }
 
