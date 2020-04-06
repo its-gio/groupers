@@ -10,7 +10,7 @@ function Projects(props) {
         <span>more ></span>
       </div>
 
-      <div className="projects--item-container__item">
+      <div className="projects--item-container">
         {projectsMap}
       </div>
     </div>
