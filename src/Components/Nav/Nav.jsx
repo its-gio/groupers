@@ -3,6 +3,7 @@ import Entrance from './Entrance/Entrance';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import { getSession } from '../../redux/reducers/userReducer'
+import { Link } from 'react-router-dom';
 
 function Nav(props) {
   useEffect(() => {
@@ -11,7 +12,7 @@ function Nav(props) {
 
   return (
     <nav>
-      <div><h1>Groupers</h1></div>
+      <Link to="/"><h1>Groupers</h1></Link>
       { props.user.user_id ? <Profile user={props.user} /> : <Entrance /> }
     </nav>
   )
