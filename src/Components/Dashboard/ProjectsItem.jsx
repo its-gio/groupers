@@ -1,9 +1,10 @@
 import React from 'react';
 import NoImg from '../../imgs/No_image_available.svg'
+import { Link } from 'react-router-dom';
 
 function ProjectsItem(props) {
   return (
-    <div className="projects-inner--item-container__item">
+    <Link className="projects-inner--item-container__item" to={`/project/${props.project.project_id}`}>
       <div className="img-container">
         <img src={NoImg} alt="No Image Available"/>
       </div>
@@ -13,7 +14,7 @@ function ProjectsItem(props) {
 
         {props.project.creator ? <span>by: {props.project.creator}</span> : ""}
       </div>
-    </div>
+    </Link>
   )
 }
 
