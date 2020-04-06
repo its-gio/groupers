@@ -35,4 +35,13 @@
       }
     }
   }
+
+  .projects {
+    padding: 60px;
+
+    &--section-title {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }

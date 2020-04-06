@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const initialState = {
-  loading: false
-}
+const initialState = {}
 
 // Actions
 const GET_PROJECTS = "GET_PROJECTS";
