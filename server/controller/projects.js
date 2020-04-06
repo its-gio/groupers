@@ -28,6 +28,8 @@ async function getProject(req, res) {
   } catch (error) {
     return res.status(500).json(error);
   }
+  gottenProjects = await db.project.get_projects();
+  return res.status(201).json(gottenProjects);
 }
 
 // async function deleteProject(req, res) {
