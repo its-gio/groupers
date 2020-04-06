@@ -5,7 +5,7 @@ import ProjectDetails from './Components/ProjectDetails';
 
 export default (
   <Switch>
-    <Route path="/project/:id" component={ProjectDetails} />
+    <Route path="/project/:project_id" component={ProjectDetails} />
     <Route path="/" component={Dashboard} />
   </Switch>
 )

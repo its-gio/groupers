@@ -1,11 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react';
+import { connect } from 'react-redux';
 
-function ProjectDetails() {
+import { getProjects } from '../redux/reducers/projectsReducer';
+
+function ProjectDetails(props) {
+  useEffect(() => {
+    props.getProjects(props.match.params.project_id)
+  }, []);
+
   return (
     <div>
-      ProjectDetails
+      
     </div>
   )
 }
 
-export default ProjectDetails
+const mapStateToProps = (reduxState) => ({ project: reduxState.projects.projects, loading: reduxState.projects.loading });
+
+export default connect(mapStateToProps, { getProjects })(ProjectDetails);

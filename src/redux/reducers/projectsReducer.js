@@ -6,8 +6,14 @@ const initialState = {}
 const GET_PROJECTS = "GET_PROJECTS";
 
 // Export Functions
-export function getProjects() {
-  const data = axios.get('/api/project');
+export function getProjects(project_id) {
+  let data;
+
+  if (project_id) {
+    data = axios.get(`/api/project?project_id=${project_id}`);
+  } else {
+    data = axios.get('/api/project');
+  }
   return { type: GET_PROJECTS, payload: data };
 }
 
