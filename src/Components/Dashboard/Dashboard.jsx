@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getProjects } from '../../redux/reducers/projectsReducer';
-import Loading from '../Loading';
+import Loading from '../Reusable/Loading';
 import Projects from './Projects';
 
 function Dashboard(props) {
