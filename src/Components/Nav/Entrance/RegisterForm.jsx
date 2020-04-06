@@ -27,12 +27,12 @@ function RegisterForm(props) {
       formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
       formData.append("file", imgFile);
 
-      axios.post(`${process.env.REACT_APP_CLOUDINARY_URL}`, formData)
-        .then(res => {
-          const profile_pic = `https://res.cloudinary.com/dlhp14lpx/image/upload/q_auto:low,w_30,h_30,c_fill,g_face,r_5,f_auto/${res.data.public_id}`;
-          return props.postRegister({...register, profile_pic });
-        })
-        .catch(err => console.error(err));
+    axios.post(`${process.env.REACT_APP_CLOUDINARY_URL}`, formData)
+      .then(res => {
+        const profile_pic = `https://res.cloudinary.com/dlhp14lpx/image/upload/q_auto:low,w_30,h_30,c_fill,g_face,r_5,f_auto/${res.data.public_id}`;
+        return props.postRegister({...register, profile_pic });
+      })
+      .catch(err => console.error(err));
   }
 
   return (
