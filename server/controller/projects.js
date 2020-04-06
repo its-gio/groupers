@@ -13,10 +13,18 @@ async function createProject(req, res) {
 
 async function getProject(req, res) {
   const db = req.app.get('db');
+  const { project_id } = req.query;
+  let gottenProjects;
 
   try {
-    const gottenProjects = await db.project.get_projects();
-    return res.status(201).json(gottenProjects);
+    if (project_id) {
+      gottenProjects = await db.project.get_project(project_id);
+      if (gottenProjects.length === 0) {
+        gottenProjects = await db.project.get_projects();
+        return res.status(201).json(gottenProjects);
+      }
+      return res.status(201).json(gottenProjects);
+    }
   } catch (error) {
     return res.status(500).json(error);
   }
