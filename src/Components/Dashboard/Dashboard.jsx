@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getProjects } from '../../redux/reducers/projectsReducer';
-import Loading from '../Reusable/Loading';
+import { Link } from 'react-router-dom';
 import Projects from './Projects';
+import Loading from '../Reusable/Loading';
+import { getProjects } from '../../redux/reducers/projectsReducer';
 
 function Dashboard(props) {
   useEffect(() => {
@@ -14,7 +15,7 @@ function Dashboard(props) {
       <div className="banner">
         <div className="banner--inner">
           <h2>Get the brain juices going!</h2>
-          <button>Got An Idea?</button>
+          <Link to="/project-form/"><button className="banner--inner__button">Got An Idea?</button></Link>
         </div>
       </div>
 
