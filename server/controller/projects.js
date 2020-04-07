@@ -3,8 +3,8 @@ async function createProject(req, res) {
   const db = req.app.get('db');
 
   try {
-    await db.project.create(creator, title, description, difficulty, funded, start_time, end_time);
-    return res.sendStatus(200);
+    const projects = await db.project.create(creator, title, description, difficulty, funded, start_time, end_time);
+    return res.status(200).json(projects);
   } catch (error) {
     return res.status(500).json(error);
     

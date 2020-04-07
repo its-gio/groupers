@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import { postProjects } from '../../redux/reducers/projectsReducer';
+import { postProjects, getProjects } from '../../redux/reducers/projectsReducer';
 
 class ProjectForm extends Component {
   state = {
@@ -17,7 +17,8 @@ class ProjectForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.props.user.user_id) return this.setState({ creator: this.props.user.user_id });
-    this.props.postProjects(this.state)
+    this.props.postProjects(this.state);
+    this.props.history.push('/');
   }
 
   handleChange = (e) => {
@@ -31,7 +32,7 @@ class ProjectForm extends Component {
         <h2>Add Project</h2>
         <form onSubmit={this.handleSubmit} className="project-form--form">
           <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" required />
-          <input onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Description" required />
+          <textarea onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Description" required />
 
           <select onChange={this.handleChange} name='difficulty' required>
             <option disabled selected defaultValue value="">Difficulty</option>
@@ -58,4 +59,4 @@ class ProjectForm extends Component {
 
 const mapStateToProps = reduxState => ({ user: reduxState.user })
 
-export default connect(mapStateToProps, { postProjects })(ProjectForm)
+export default connect(mapStateToProps, { postProjects, getProjects })(ProjectForm)
