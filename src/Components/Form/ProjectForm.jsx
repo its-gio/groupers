@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
-export default class ProjectForm extends Component {
+import { postProjects } from '../../redux/reducers/projectsReducer';
+
+class ProjectForm extends Component {
   state = {
-    // creator: ,
+    creator: null,
     title: "",
     description: "",
     difficulty: null,
     funded: false,
     start_time: null,
     end_time: null
+  }
+  
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.props.user.user_id) return this.setState({ creator: this.props.user.user_id });
+    this.props.postProjects(this.state)
   }
 
   handleChange = (e) => {
@@ -20,7 +29,7 @@ export default class ProjectForm extends Component {
     return (
       <div className="project-form">
         <h2>Add Project</h2>
-        <form className="project-form--form">
+        <form onSubmit={this.handleSubmit} className="project-form--form">
           <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" required />
           <input onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Description" required />
 
@@ -38,9 +47,15 @@ export default class ProjectForm extends Component {
             <span>Funded</span>
             <input type="checkbox" name="funded" checked={this.state.funded} onChange={this.handleChange} />
           </div>
+
+
           <input type="submit"/>
         </form>
       </div>
     )
   }
 }
+
+const mapStateToProps = reduxState => ({ user: reduxState.user })
+
+export default connect(mapStateToProps, { postProjects })(ProjectForm)
