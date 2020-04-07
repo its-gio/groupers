@@ -12,7 +12,7 @@ function ProjectsItem(props) {
       <div className="content-container">
         <h6>{props.project.title}</h6>
 
-        {props.project.creator ? <span>by: {props.project.creator}</span> : ""}
+        {props.project.fullname ? <span>by: {props.project.fullname}</span> : ""}
       </div>
     </Link>
   )
