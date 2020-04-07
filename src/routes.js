@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from './Components/Dashboard/Dashboard';
-import ProjectDetails from './Components/ProjectDetails';
+import Project from './Components/Project/Project';
 
 export default (
   <Switch>
-    <Route path="/project/:project_id" component={ProjectDetails} />
+    <Route path="/project/:project_id" component={Project} />
     <Route path="/" component={Dashboard} />
   </Switch>
 )

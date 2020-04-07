@@ -1,5 +1,8 @@
 @import './styles/Nav';
 @import './styles/Dashboard';
+@import './styles/Project';
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -8,3 +11,5 @@ a { color: initial; text-decoration: none; }
 ul {
   list-style-type: none;
 }
+
+p { font-family: 'Amiri', serif; }
