@@ -12,8 +12,8 @@ export default class ProjectForm extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.type)
-    this.setState({ [e.target.name]: e.target.checked })
+    if (e.target.type === 'checkbox') return this.setState({ [e.target.name]: e.target.checked });
+    return this.setState({ [e.target.name]: e.target.value })
   }
 
   render() {
@@ -21,11 +21,11 @@ export default class ProjectForm extends Component {
       <div className="project-form">
         <h2>Add Project</h2>
         <form className="project-form--form">
-          <input type="text" name="title" placeholder="Title" required />
-          <input type="text" name="description" placeholder="Description" required />
+          <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" required />
+          <input onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Description" required />
 
-          <select required>
-            <option disabled selected>Difficulty</option>
+          <select onChange={this.handleChange} name='difficulty' required>
+            <option disabled selected value="">Difficulty</option>
             <option value="Beginner">Beginner</option>
             <option value="Easy">Easy</option>
             <option value="Normal">Normal</option>
