@@ -16,8 +16,9 @@ class ProjectForm extends Component {
   
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.props.user.user_id) return this.setState({ creator: this.props.user.user_id });
-    this.props.postProjects(this.state);
+    this.props.user.user_id ?
+      this.props.postProjects({ ...this.state, creator: this.props.user.user_id}) :
+      this.props.postProjects(this.state);
     this.props.history.push('/');
   }
 

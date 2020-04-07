@@ -38,7 +38,7 @@ export default function reducer(state = initialState, action) {
         projects: payload.data,
         loading: false
       }
-
+      
     case `${POST_PROJECTS}_PENDING`:
       return {
         ...state,
@@ -47,6 +47,7 @@ export default function reducer(state = initialState, action) {
     case `${POST_PROJECTS}_FULFILLED`:
       return {
         ...state,
+        projects: payload.data,
         loading: false
       }
 
