@@ -25,7 +25,7 @@ export default class ProjectForm extends Component {
           <input onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Description" required />
 
           <select onChange={this.handleChange} name='difficulty' required>
-            <option disabled selected value="">Difficulty</option>
+            <option disabled selected defaultValue value="">Difficulty</option>
             <option value="Beginner">Beginner</option>
             <option value="Easy">Easy</option>
             <option value="Normal">Normal</option>
