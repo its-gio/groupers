@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
+import Funded from './Funded';
 import { postProjects, getProjects } from '../../redux/reducers/projectsReducer';
 
 class ProjectForm extends Component {
@@ -10,12 +11,14 @@ class ProjectForm extends Component {
     description: "",
     difficulty: null,
     funded: false,
+    amount: null,
     start_time: null,
     end_time: null
   }
-  
+
   handleSubmit = (e) => {
     e.preventDefault();
+    if (this.state.funded) return;
     this.props.user.user_id ?
       this.props.postProjects({ ...this.state, creator: this.props.user.user_id}) :
       this.props.postProjects(this.state);
@@ -37,7 +40,7 @@ class ProjectForm extends Component {
 
           <select onChange={this.handleChange} name='difficulty' required>
             <option disabled selected defaultValue value="">Difficulty</option>
-            <option value="Beginner">Beginner</option>
+            <option defaultValue value="Beginner">Beginner</option>
             <option value="Easy">Easy</option>
             <option value="Normal">Normal</option>
             <option value="Advanced">Advanced</option>
@@ -50,8 +53,9 @@ class ProjectForm extends Component {
             <input type="checkbox" name="funded" checked={this.state.funded} onChange={this.handleChange} />
           </div>
 
+          { this.state.funded ? <Funded /> : "" }
 
-          <input type="submit"/>
+          <input disabled={this.state.funded} type="submit"/>
         </form>
       </div>
     )

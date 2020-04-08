@@ -21,6 +21,7 @@ CREATE TABLE groupers_project
   description TEXT NOT NULL,
   difficulty VARCHAR(15) NOT NULL,
   funded BOOLEAN NOT NULL,
+  amount INTEGER,
   start_time TIMESTAMP,
   end_time TIMESTAMP
 );
