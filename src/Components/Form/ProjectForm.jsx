@@ -53,7 +53,7 @@ class ProjectForm extends Component {
             <input type="checkbox" name="funded" checked={this.state.funded} onChange={this.handleChange} />
           </div>
 
-          { this.state.funded ? <Funded /> : "" }
+          { this.state.funded ? <Funded changeAmount={this.handleChange} amount={this.state.amount} /> : "" }
 
           <input disabled={this.state.funded} type="submit"/>
         </form>

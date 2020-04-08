@@ -5,6 +5,7 @@ const initialState = {}
 // Actions
 const GET_PROJECTS = "GET_PROJECTS";
 const POST_PROJECTS = "POST_PROJECTS";
+const POST_FUNDS = "POST_FUNDS";
 
 // Export Functions
 export function getProjects(project_id) {
@@ -21,6 +22,11 @@ export function getProjects(project_id) {
 export function postProjects(formData) {
   const data = axios.post('/api/project', {...formData});
   return { type: POST_PROJECTS, payload: data };
+}
+
+export function postFunds(id, amount) {
+  const data = axios.post('/api/fund', { id, amount });
+  return { type: POST_FUNDS, payload: data };
 }
 
 // Reducer
@@ -45,6 +51,18 @@ export default function reducer(state = initialState, action) {
         loading: true
       }
     case `${POST_PROJECTS}_FULFILLED`:
+      return {
+        ...state,
+        projects: payload.data,
+        loading: false
+      }
+      
+    case `${POST_FUNDS}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+    case `${POST_FUNDS}_FULFILLED`:
       return {
         ...state,
         projects: payload.data,
