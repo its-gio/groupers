@@ -31,6 +31,11 @@
 
 .stripe-form {
 
+  &--submit {
+    margin-top: 5px;
+    display: block;
+  }
+
   .loading-img-container {
     height: 20px;
     display: block;

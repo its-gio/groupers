@@ -55,10 +55,10 @@ async function postPayment(req, res) {
       confirm: true
     })
 
-    console.log(payment);
-    return res.status(200).json({ confirm: "working correctly!" })
+    res.status(200).json({ status: "sucess" })
   } catch (error) {
     console.log(error);
+    res.status(400).json({ error, status: "failure" })
   }
 }
 

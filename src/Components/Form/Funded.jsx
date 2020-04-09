@@ -36,7 +36,7 @@ function FundedForm(props) {
       { 
         props.loading ?
         <span className="loading-img-container"><img src={loadingGif} alt="Loading Gif" /></span> :
-        <button type="submit" disabled={disableSubmit}>Fund Hackathon</button>
+        <button className="stripe-form--submit" type="submit" disabled={disableSubmit}>Fund Hackathon</button>
       }
     </form>
   )
@@ -47,7 +47,7 @@ function Funded(props) {
 
   return (
     <Elements stripe={stripePromise}>
-      <FundedForm changeAmount={props.changeAmount} postFunds={props.postFunds} amount={props.amount} />
+      <FundedForm changeAmount={props.changeAmount} loading={props.loading} postFunds={props.postFunds} amount={props.amount} />
     </Elements>
   )
 }
