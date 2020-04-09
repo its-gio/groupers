@@ -6,17 +6,14 @@ import { postProjects, getProjects, postFormUnmount } from '../../redux/reducers
 
 class ProjectForm extends Component {
   state = {
-    postInfo: {
-      creator: null,
-      title: "",
-      description: "",
-      difficulty: null,
-      funded: false,
-      amount: null,
-      start_time: null,
-      end_time: null
-    },
-    status: null
+    creator: null,
+    title: "",
+    description: "",
+    difficulty: null,
+    funded: false,
+    amount: null,
+    start_time: null,
+    end_time: null
   }
 
   componentWillMount() {
@@ -25,20 +22,20 @@ class ProjectForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.postInfo.funded) return;
+    if (this.state.funded) return;
 
     if (this.props.user.user_id) {
-      this.props.postProjects({ ...this.state.postInfo, creator: this.props.user.user_id})
+      this.props.postProjects({ ...this.state, creator: this.props.user.user_id})
     } else {
-      this.props.postProjects(this.state.postInfo);
+      this.props.postProjects(this.state);
     }
 
     this.props.history.push('/');
   }
 
   handleChange = (e) => {
-    if (e.target.type === 'checkbox') return this.setState({ postInfo: { ...this.state.postInfo, [e.target.name]: e.target.checked }});
-    return this.setState({ postInfo: { ...this.state.postInfo, [e.target.name]: e.target.value }})
+    if (e.target.type === 'checkbox') return this.setState({ [e.target.name]: e.target.checked });
+    return this.setState({ [e.target.name]: e.target.value })
   }
 
   render() {
@@ -46,8 +43,8 @@ class ProjectForm extends Component {
       <div className="project-form">
         <h2>Add Project</h2>
         <form onSubmit={this.handleSubmit} className="project-form--form">
-          <input onChange={this.handleChange} value={this.state.postInfo.title} type="text" name="title" placeholder="Title" required />
-          <textarea onChange={this.handleChange} value={this.state.postInfo.description} type="text" name="description" placeholder="Description" required />
+          <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" required />
+          <textarea onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Description" required />
 
           <select onChange={this.handleChange} name='difficulty' required>
             <option disabled selected value="">Difficulty</option>
@@ -61,18 +58,18 @@ class ProjectForm extends Component {
 
           <div className="project-form--form__funded">
             <span>Funded</span>
-            <input type="checkbox" name="funded" checked={this.state.postInfo.funded} onChange={this.handleChange} />
+            <input type="checkbox" name="funded" disabled={this.props.status} checked={this.state.funded} onChange={this.handleChange} />
           </div>
 
-          { this.state.postInfo.funded ? <Funded changeAmount={this.handleChange} amount={this.state.postInfo.amount} /> : "" }
+          { this.state.funded ? <Funded changeAmount={this.handleChange} status={this.props.status} amount={this.state.amount} /> : "" }
 
-          <input disabled={this.state.postInfo.funded} type="submit"/>
+          <input disabled={this.state.funded} type="submit"/>
         </form>
       </div>
     )
   }
 }
 
-const mapStateToProps = reduxState => ({ user: reduxState.user })
+const mapStateToProps = reduxState => ({ user: reduxState.user, status: reduxState.projects.status })
 
 export default connect(mapStateToProps, { postProjects, getProjects, postFormUnmount })(ProjectForm)

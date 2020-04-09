@@ -27,12 +27,12 @@ function FundedForm(props) {
     }
   }
 
-  const disableSubmit = !props.amount || props.amount == 0;
+  const disableSubmit = !props.amount || props.amount == 0 || props.status;
 
   return (
     <form className="stripe-form" onSubmit={handleSubmit}>
       <CardElement />
-      <input onChange={props.changeAmount} value={props.amount === null ? 0 : props.amount} required min="0" step="5.00" type="number" name="amount"/>
+      <input disabled={props.status} onChange={props.changeAmount} value={props.amount === null ? 0 : props.amount} required min="0" step="5.00" type="number" name="amount"/>
       { 
         props.loading ?
         <span className="loading-img-container"><img src={loadingGif} alt="Loading Gif" /></span> :
@@ -47,7 +47,7 @@ function Funded(props) {
 
   return (
     <Elements stripe={stripePromise}>
-      <FundedForm changeAmount={props.changeAmount} loading={props.loading} postFunds={props.postFunds} amount={props.amount} />
+      <FundedForm changeAmount={props.changeAmount} status={props.status} loading={props.loading} postFunds={props.postFunds} amount={props.amount} />
     </Elements>
   )
 }
