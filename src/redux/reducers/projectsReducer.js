@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const initialState = {
-  status: false
+  status: null,
+  errorMessage: null
 }
 
 // Actions
@@ -70,10 +71,10 @@ export default function reducer(state = initialState, action) {
         loading: true
       }
     case `${POST_FUNDS}_FULFILLED`:
-      console.log(payload.data);
       return {
         ...state,
         status: payload.data.status,
+        errorMessage: payload.data.error,
         loading: false
       }
 
@@ -81,6 +82,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         status: null,
+        errorMessage: null,
         loading: false
       }
 

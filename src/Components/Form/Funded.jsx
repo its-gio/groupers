@@ -16,17 +16,20 @@ function FundedForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (Number(props.amount.split('.', 1)[0]) * 100 === 0) return;
     const submitAmount = Number(props.amount.split('.', 1)[0]) * 100;
+    if (submitAmount === 0) return;
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: element.getElement(CardElement)
     })
 
-    if(!error) {
-      const { id } = paymentMethod;
-      props.postFunds(id, submitAmount);
+    if(!error) props.postFunds(paymentMethod.id, submitAmount);
+
+    if (props.status === true) {
+      toast("Success!", { type: 'success' });
+    } else if (props.status === false) {
+      toast(props.errorMessage, { type: 'error' });
     }
   }
 
@@ -35,7 +38,7 @@ function FundedForm(props) {
   return (
     <form className="stripe-form" onSubmit={handleSubmit}>
       <CardElement />
-      <input disabled={props.status} onChange={props.changeAmount} value={props.amount === null ? 0 : props.amount} required min="0" step="5.00" type="number" name="amount"/>
+      <input disabled={props.status} onChange={props.changeAmount} value={props.amount} required min="0" step="5" type="number" name="amount"/>
       { 
         props.loading ?
         <span className="loading-img-container"><img src={loadingGif} alt="Loading Gif" /></span> :
@@ -50,11 +53,11 @@ function Funded(props) {
 
   return (
     <Elements stripe={stripePromise}>
-      <FundedForm changeAmount={props.changeAmount} status={props.status} loading={props.loading} postFunds={props.postFunds} amount={props.amount} />
+      <FundedForm changeAmount={props.changeAmount} status={props.status} errorMessage={props.errorMessage} loading={props.loading} postFunds={props.postFunds} amount={props.amount} />
     </Elements>
   )
 }
 
-const mapStateToProps = (reduxState) => ({ loading: reduxState.projects.loading })
+const mapStateToProps = (reduxState) => ({ loading: reduxState.projects.loading, errorMessage: reduxState.projects.errorMessage })
 
 export default connect(mapStateToProps, { postFunds })(Funded);

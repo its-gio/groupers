@@ -22,7 +22,7 @@ class ProjectForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.funded) return;
+    if (this.state.funded && this.props.status !== true) return;
 
     if (this.props.user.user_id) {
       this.props.postProjects({ ...this.state, creator: this.props.user.user_id})
@@ -63,7 +63,7 @@ class ProjectForm extends Component {
 
           { this.state.funded ? <Funded changeAmount={this.handleChange} status={this.props.status} amount={this.state.amount} /> : "" }
 
-          <input disabled={this.state.funded} type="submit"/>
+          <input disabled={this.state.funded && this.props.status !== true} type="submit"/>
         </form>
       </div>
     )
