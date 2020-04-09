@@ -26,6 +26,7 @@ function FundedForm(props) {
 
     if(!error) props.postFunds(paymentMethod.id, submitAmount);
 
+    // Fix toast notification to show payment was successful.
     if (props.status === true) {
       toast("Success!", { type: 'success' });
     } else if (props.status === false) {
