@@ -11,7 +11,7 @@ class ProjectForm extends Component {
     description: "",
     difficulty: null,
     funded: false,
-    amount: null,
+    amount: "0",
     start_time: null,
     end_time: null
   }

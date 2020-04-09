@@ -2,9 +2,12 @@ import React from 'react';
 import  { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import { postFunds } from '../../redux/reducers/projectsReducer';
 import loadingGif from '../../imgs/loading.gif';
+toast.configure();
 
 function FundedForm(props) {
   const stripe = useStripe();
@@ -13,7 +16,7 @@ function FundedForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!props.amount || props.amount == 0) return;
+    if (Number(props.amount.split('.', 1)[0]) * 100 === 0) return;
     const submitAmount = Number(props.amount.split('.', 1)[0]) * 100;
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -27,7 +30,7 @@ function FundedForm(props) {
     }
   }
 
-  const disableSubmit = !props.amount || props.amount == 0 || props.status;
+  const disableSubmit = (Number(props.amount.split('.', 1)[0]) * 100) === 0 || props.status;
 
   return (
     <form className="stripe-form" onSubmit={handleSubmit}>
