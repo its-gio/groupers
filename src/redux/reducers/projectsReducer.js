@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
-  status: null
+  status: false
 }
 
 // Actions
