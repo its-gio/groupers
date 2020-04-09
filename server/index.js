@@ -6,7 +6,7 @@ const session = require("express-session");
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const { register, login, logout, getSession } = require('./controller/auth');
-const { deleteUser } = require('./controller/user');
+const { deleteUser, editUser } = require('./controller/user');
 const { createProject, getProject, postPayment } = require('./controller/projects');
 
 massive(CONNECTION_STRING)
@@ -27,6 +27,7 @@ app
   .get('/auth/logout', logout)
   .get('/auth/session', getSession)
   .delete('/user/delete', deleteUser)
+  .put('/user/edit', editUser)
   .post('/api/project', createProject)
   .get('/api/project', getProject)
   .post('/api/fund', postPayment)
