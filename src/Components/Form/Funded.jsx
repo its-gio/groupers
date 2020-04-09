@@ -30,7 +30,7 @@ function FundedForm(props) {
   const disableSubmit = !props.amount || props.amount == 0;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="stripe-form" onSubmit={handleSubmit}>
       <CardElement />
       <input onChange={props.changeAmount} value={props.amount === null ? 0 : props.amount} required min="0" step="5.00" type="number" name="amount"/>
       { 
