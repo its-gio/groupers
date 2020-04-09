@@ -65,7 +65,6 @@ export default function reducer(state = initialState, action) {
     case `${POST_FUNDS}_FULFILLED`:
       return {
         ...state,
-        projects: payload.data,
         loading: false
       }
 

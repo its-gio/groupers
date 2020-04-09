@@ -1,3 +1,6 @@
+const Stripe = require("stripe");
+require("dotenv").config();
+
 async function createProject(req, res) {
   const { creator, title, description, difficulty, funded, start_time, end_time } = req.body; 
   const db = req.app.get('db');
@@ -40,9 +43,29 @@ async function getProject(req, res) {
   
 // }
 
+async function postPayment(req, res) {
+  const { id, amount } = req.body;
+  const stripe = new Stripe(process.env.STRIPE_PRIVATE);
+
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: 'USD',
+      payment_method: id,
+      confirm: true
+    })
+
+    console.log(payment);
+    return res.status(200).json({ confirm: "working correctly!" })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   createProject,
   getProject,
   // deleteProject,
-  // editProject
+  // editProject,
+  postPayment
 }

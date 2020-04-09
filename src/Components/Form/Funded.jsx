@@ -3,7 +3,8 @@ import  { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { connect } from 'react-redux';
 
-import { postFunds } from '../../redux/reducers/projectsReducer'
+import { postFunds } from '../../redux/reducers/projectsReducer';
+import loadingGif from '../../imgs/loading.gif';
 
 function FundedForm(props) {
   const stripe = useStripe();
@@ -32,7 +33,11 @@ function FundedForm(props) {
     <form onSubmit={handleSubmit}>
       <CardElement />
       <input onChange={props.changeAmount} value={props.amount === null ? 0 : props.amount} required min="0" step="5.00" type="number" name="amount"/>
-      <button type="submit" disabled={disableSubmit}>Fund Hackathon</button>
+      { 
+        props.loading ?
+        <span className="loading-img-container"><img src={loadingGif} alt="Loading Gif" /></span> :
+        <button type="submit" disabled={disableSubmit}>Fund Hackathon</button>
+      }
     </form>
   )
 }
@@ -42,9 +47,11 @@ function Funded(props) {
 
   return (
     <Elements stripe={stripePromise}>
-      <FundedForm changeAmount={props.changeAmount} amount={props.amount} />
-  </Elements>
+      <FundedForm changeAmount={props.changeAmount} postFunds={props.postFunds} amount={props.amount} />
+    </Elements>
   )
 }
 
-export default connect(null, { postFunds })(Funded);
+const mapStateToProps = (reduxState) => ({ loading: reduxState.projects.loading })
+
+export default connect(mapStateToProps, { postFunds })(Funded);
