@@ -6,6 +6,11 @@ import { getLogout, deleteUser } from '../../redux/reducers/userReducer'
 
 
 function Profile(props) {
+  const handleDeleteAccount = () => {
+    props.deleteUser();
+    props.getLogout();
+  }
+
   return (
     <div className="profile">
       <div className="profile--img-conatiner">
@@ -14,7 +19,7 @@ function Profile(props) {
 
       <ul className="profile--options">
         <li onClick={props.getLogout}>Logout</li>
-        <li onClick={props.deleteUser} style={{ color: "red" }}>Delete Account</li>
+        <li onClick={handleDeleteAccount} style={{ color: "red" }}>Delete Account</li>
       </ul>
     </div>
   )
