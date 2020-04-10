@@ -9,6 +9,8 @@ const POST_REGISTER = "POST_REGISTER";
 const POST_LOGIN = "POST_LOGIN";
 const GET_LOGOUT = "GET_LOGOUT";
 const GET_SESSION = "GET_SESSION";
+const DELETE_USER = "DELETE_USER";
+const EDIT_USER = "EDIT_USER";
 
 // Export Functions
 export function postRegister(register) {
@@ -32,13 +34,14 @@ export function getSession() {
 }
 
 export function deleteUser() {
-  axios.delete('/user/delete');
-  getLogout();
+  const data = axios.delete('/user/delete');
+  return { type: DELETE_USER, payload: data };
 }
 
 export function editUser() {
   const data = axios.put('/user/edit');
   getSession()
+  return { type: EDIT_USER, payload: data };
 }
 
 // Reducer
@@ -116,6 +119,34 @@ export default function reducer(state = initialState, action) {
         user_id: payload.data.user_id,
         fullname: payload.data.fullname,
         profile_pic: payload.data.profile_pic,
+        email: payload.data.email,
+        loading: false
+      }
+      
+    case `${DELETE_USER}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+    case `${DELETE_USER}_FULFILLED`:
+      return {
+        ...state,
+        user_id: null,
+        fullname: null,
+        profile_pic: null,
+        email: null,
+        loading: false
+      }
+
+    case `${EDIT_USER}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+    case `${EDIT_USER}_FULFILLED`:
+      return {
+        ...state,
+        fullname: payload.data.fullname,
         email: payload.data.email,
         loading: false
       }
