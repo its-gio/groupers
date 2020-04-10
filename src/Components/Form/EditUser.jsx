@@ -12,12 +12,16 @@ class EditUser extends Component {
     this.setState({ fullname, email });
   }
 
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   render() {
     return (
       <form className="profile--edit-user__form">
         <span onClick={() => this.props.setEditForm(false)} className="exit">X</span>
-        <input type="text" value={this.state.fullname} placeholder="Full Name" />
-        <input type="text" value={this.state.email} placeholder="Email" />
+        <input onChange={this.handleChange} type="text" name="fullname" value={this.state.fullname} placeholder="Full Name" />
+        <input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="Email" />
         <button type="submit">Submit</button>
       </form>
     )
