@@ -6,7 +6,7 @@ import EditUser from '../Form/EditUser';
 import { getLogout, deleteUser } from '../../redux/reducers/userReducer'
 
 function Profile(props) {
-  const [editForm, setEditForm] = useState(true)
+  const [editForm, setEditForm] = useState(false)
 
   const handleDeleteAccount = () => {
     props.deleteUser();

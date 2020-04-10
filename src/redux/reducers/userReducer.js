@@ -38,8 +38,8 @@ export function deleteUser() {
   return { type: DELETE_USER, payload: data };
 }
 
-export function editUser() {
-  const data = axios.put('/user/edit');
+export function editUser(info) {
+  const data = axios.put('/user/edit', { ...info });
   getSession()
   return { type: EDIT_USER, payload: data };
 }
