@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Entrance from './Entrance/Entrance';
 import Profile from './Profile';
-import { connect } from 'react-redux';
 import { getSession } from '../../redux/reducers/userReducer'
-import { Link } from 'react-router-dom';
 
 function Nav(props) {
   useEffect(() => {

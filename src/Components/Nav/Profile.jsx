@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProfileImg from './ProfileImg';
 import { connect } from 'react-redux';
+import EditUser from '../Form/EditUser';
 
 import { getLogout, deleteUser } from '../../redux/reducers/userReducer'
 
-
 function Profile(props) {
+  const [editForm, setEditForm] = useState(true)
+
   const handleDeleteAccount = () => {
     props.deleteUser();
     props.getLogout();
@@ -18,9 +20,14 @@ function Profile(props) {
       </div>
 
       <ul className="profile--options">
+        <li onClick={() => setEditForm(true)}>Edit</li>
         <li onClick={props.getLogout}>Logout</li>
         <li onClick={handleDeleteAccount} style={{ color: "red" }}>Delete Account</li>
       </ul>
+
+      <div className={ editForm ? "profile--edit-user active" : "profile--edit-user"}>
+        <EditUser setEditForm={setEditForm} />
+      </div>
     </div>
   )
 }
